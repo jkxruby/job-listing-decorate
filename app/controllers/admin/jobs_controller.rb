@@ -8,6 +8,7 @@ end
 
 def create
   @job = Job.new(job_params)
+  @job.user = current_user
   if @job.save
     redirect_to admin_jobs_path
   else
@@ -47,7 +48,7 @@ def require_is_admin
     flash[:alert] = 'you are not admin'
     redirect_to root_path
   end
-end 
+end
 
 
 private
