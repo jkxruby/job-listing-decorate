@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-before_action :authenticate_user!
+before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
 
 def index
   @jobs = Job.all
@@ -15,6 +15,7 @@ end
 
 def create
   @job = Job.new(job_params)
+  @job.user = current_user
   if @job.save
     redirect_to jobs_path
   else
@@ -44,6 +45,6 @@ end
 private
 def job_params
   params.require(:job).permit(:title, :description)
-end 
+end
 
 end
