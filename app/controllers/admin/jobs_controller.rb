@@ -42,6 +42,12 @@ def destroy
   redirect_to admin_jobs_path,alert: "delete success"
 end
 
+def require_is_admin
+  if !current_user.admin?
+    flash[:alert] = 'you are not admin'
+    redirect_to root_path
+  end
+end 
 
 
 private
