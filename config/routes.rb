@@ -5,4 +5,8 @@ root 'jobs#index'
 
 resources :jobs
 
+namespace :admin do
+  resources :jobs
+end 
+
 end
